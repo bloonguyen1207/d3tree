@@ -27,7 +27,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.*/
 
 
 // Get JSON data
-treeJSON = d3.json("http://127.0.0.1:8000/entry.json", {crossOrigin: "anonymous"}).then(function(error, treeData) {
+treeJSON = d3.json("https://raw.githubusercontent.com/bloonguyen1207/d3tree/master/entry.json", function(error, treeData) {
 
     // Calculate total nodes, max label length
     var totalNodes = 0;
