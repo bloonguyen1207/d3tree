@@ -1,34 +1,15 @@
-.node {
-  cursor: pointer;
-}
-.overlay{
-    background-color:#fff;
-}
-
 .node circle {
   fill: #fff;
   stroke: steelblue;
-  stroke-width: 1.5px;
+  stroke-width: 3px;
 }
 
 .node text {
-  font-size:10px;
-  font-family:sans-serif;
+  font: 12px sans-serif;
 }
 
 .link {
   fill: none;
   stroke: #ccc;
-  stroke-width: 1.5px;
-}
-.templink {
-  fill: none;
-  stroke: red;
-  stroke-width: 3px;
-}
-.ghostCircle.show{
-    display:block;
-}
-.ghostCircle, .activeDrag .ghostCircle{
-     display: none;
+  stroke-width: 2px;
 }
