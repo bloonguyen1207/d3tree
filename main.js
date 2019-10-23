@@ -5,7 +5,7 @@ d3.json("https://raw.githubusercontent.com/bloonguyen1207/d3tree/master/entry.js
   // Set the dimensions and margins of the diagram
   let margin = {top: 20, right: 90, bottom: 30, left: 90},
       width = 3000 - margin.left - margin.right,
-      height = 800 - margin.top - margin.bottom;
+      height = 1000 - margin.top - margin.bottom;
 
   // append the svg object to the body of the page
   // appends a 'group' element to 'svg'
@@ -13,9 +13,8 @@ d3.json("https://raw.githubusercontent.com/bloonguyen1207/d3tree/master/entry.js
   let svg = d3.select("body").append("svg")
       .attr("width", width + margin.right + margin.left)
       .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-      .attr("transform", "translate("
-            + margin.left + "," + margin.top + ")");
+      .append("g")
+      .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
   let i = 0,
       duration = 750,
@@ -43,6 +42,42 @@ d3.json("https://raw.githubusercontent.com/bloonguyen1207/d3tree/master/entry.js
   //   }
   // }
 
+  function colorForNodes(nodeData) {
+    let color = "#fff";
+
+    switch(nodeData.name) {
+      case "entry":
+        color = "#056f00";
+        break;
+      case "component":
+        color = "#057cbb";
+        break;
+      case "junction":
+        color = "#fcc536"
+        break;
+    }
+
+    return color;
+  }
+
+  function colorForCollapsedNode(nodeData) {
+    let color = "lightsteelblue";
+
+    switch(nodeData.name) {
+      case "entry":
+        color = "#044e00";
+        break;
+      case "component":
+        color = "#025c8c";
+        break;
+      case "junction":
+        color = "#ff8300"
+        break;
+    }
+
+    return color;
+  }
+
   function update(source) {
 
     // Assigns the x and y position for the nodes
@@ -65,7 +100,7 @@ d3.json("https://raw.githubusercontent.com/bloonguyen1207/d3tree/master/entry.js
     let nodeEnter = node.enter().append('g')
         .attr('class', 'node')
         .attr("transform", function(d) {
-          return "translate(" + source.y0 + "," + source.x0 + ")";
+          return `translate(${source.y0}, ${source.x0})`;
       })
       .on('click', click);
 
@@ -74,7 +109,7 @@ d3.json("https://raw.githubusercontent.com/bloonguyen1207/d3tree/master/entry.js
         .attr('class', 'node')
         .attr('r', 1e-6)
         .style("fill", function(d) {
-            return d._children ? "lightsteelblue" : "#fff";
+            return d._children ? colorForCollapsedNode(d.data) : colorForNodes(d.data);
         });
 
     // Add labels for the nodes
@@ -95,14 +130,14 @@ d3.json("https://raw.githubusercontent.com/bloonguyen1207/d3tree/master/entry.js
     nodeUpdate.transition()
       .duration(duration)
       .attr("transform", function(d) {
-          return "translate(" + d.y + "," + d.x + ")";
+          return `translate(${d.y}, ${d.x})`;
       });
 
     // Update the node attributes and style
     nodeUpdate.select('circle.node')
       .attr('r', 10)
       .style("fill", function(d) {
-          return d._children ? "lightsteelblue" : "#fff";
+          return d._children ? colorForCollapsedNode(d.data) : colorForNodes(d.data);
       })
       .attr('cursor', 'pointer');
 
@@ -111,7 +146,7 @@ d3.json("https://raw.githubusercontent.com/bloonguyen1207/d3tree/master/entry.js
     let nodeExit = node.exit().transition()
         .duration(duration)
         .attr("transform", function(d) {
-            return "translate(" + source.y + "," + source.x + ")";
+            return `translate(${source.y}, ${source.x})`;
         })
         .remove();
 
