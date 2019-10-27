@@ -23,6 +23,8 @@ triggerPopOver();
 
 d3.json("https://raw.githubusercontent.com/bloonguyen1207/d3tree/master/entry.json", function(error, treeData) {
 
+  triggerPopOver();
+
   // Set the dimensions and margins of the diagram
   let margin = {top: 20, right: 90, bottom: 30, left: 90},
       width = 3000 - margin.left - margin.right,
@@ -78,6 +80,10 @@ d3.json("https://raw.githubusercontent.com/bloonguyen1207/d3tree/master/entry.js
         break;
     }
 
+    if (nodeData.name == 'junction' && nodeData.type == 'negate') {
+      color = "#F44336";
+    }
+
     return color;
   }
 
@@ -94,6 +100,10 @@ d3.json("https://raw.githubusercontent.com/bloonguyen1207/d3tree/master/entry.js
       case "junction":
         color = "#ff8300"
         break;
+    }
+
+    if (nodeData.name == 'junction' && nodeData.type == 'negate') {
+      color = "#e20f00";
     }
 
     return color;
