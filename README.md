@@ -9,3 +9,11 @@ You can read more about institutional grammar [here](<https://papers.christopher
 Original Tree was based on [d3noob's collapsible tree](<https://bl.ocks.org/d3noob/43a860bc0024792f8803bba8ca0d5ecd>)
 
 ## Screenshots
+
+![Screenshot 4](/screenshots/Screenshot from 2019-10-27 15-45-05.png)
+
+![Screenshot 1](/screenshots/Screenshot from 2019-10-27 15-31-48.png)
+
+![Screenshot 2](/screenshots/Screenshot from 2019-10-27 15-32-13.png)
+
+![Screenshot 3](/screenshots/Screenshot from 2019-10-27 15-32-45.png)
