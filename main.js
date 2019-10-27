@@ -161,7 +161,6 @@ d3.json("https://raw.githubusercontent.com/bloonguyen1207/d3tree/master/entry.js
             `
           }
 
-          console.log(content)
           return content;
         })
         .attr('class', 'node')
