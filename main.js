@@ -139,7 +139,10 @@ d3.json("https://raw.githubusercontent.com/bloonguyen1207/d3tree/master/entry.js
           if (d.data.name == 'entry') {
             content += '<a href="#" class="btn btn-primary btn-sm">Edit</a>'
           } else if (d.data.name == 'junction') {
-            content = `<input type="text"/>`
+            content = `
+              <input type="text"/>
+              <a href="#" class="btn btn-success btn-sm">Save</a>
+            `
           }
 
           console.log(content)
