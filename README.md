@@ -10,10 +10,10 @@ Original Tree was based on [d3noob's collapsible tree](<https://bl.ocks.org/d3no
 
 ## Screenshots
 
-![Screenshot 4](/screenshots/Screenshot from 2019-10-27 15-45-05.png)
+![Screenshot 1](/screenshots/Screenshot2.png)
 
-![Screenshot 1](/screenshots/Screenshot from 2019-10-27 15-31-48.png)
+![Screenshot 2](/screenshots/Screenshot1.png)
 
-![Screenshot 2](/screenshots/Screenshot from 2019-10-27 15-32-13.png)
+![Screenshot 3](/screenshots/Screenshot4.png)
 
-![Screenshot 3](/screenshots/Screenshot from 2019-10-27 15-32-45.png)
+![Screenshot 4](/screenshots/Screenshot3.png)
