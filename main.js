@@ -1,4 +1,25 @@
 // References: https://bl.ocks.org/d3noob/43a860bc0024792f8803bba8ca0d5ecd
+function triggerPopOver() {
+  $('[data-toggle="popover"]').popover({html: true, trigger: "manual", animation: true})
+  .on("mouseenter", function () {
+    let _this = this;
+    $(this).popover("show");
+    $(".popover").on("mouseleave", function () {
+        $(_this).popover('hide');
+    });
+  })
+  .on("mouseleave", function () {
+    var _this = this;
+    setTimeout(function () {
+        if (!$(".popover:hover").length) {
+            $(_this).popover("hide");
+        }
+    }, 300);
+  })
+};
+
+triggerPopOver();
+
 
 d3.json("https://raw.githubusercontent.com/bloonguyen1207/d3tree/master/entry.json", function(error, treeData) {
 
@@ -79,6 +100,7 @@ d3.json("https://raw.githubusercontent.com/bloonguyen1207/d3tree/master/entry.js
   }
 
   function update(source) {
+    triggerPopOver();
 
     // Assigns the x and y position for the nodes
     let treeData = treemap(root);
@@ -106,6 +128,23 @@ d3.json("https://raw.githubusercontent.com/bloonguyen1207/d3tree/master/entry.js
 
     // Add Circle for the nodes
     nodeEnter.append('circle')
+        .attr('data-toggle', 'popover')
+        .attr('data-placement', 'top')
+        .attr('title', function(d) {
+          return d.data.type || d.data.name;
+        })
+        .attr('data-content', function(d) {
+          let content = `<p>${d.data.content || "N/A"}</p>`;
+
+          if (d.data.name == 'entry') {
+            content += '<a href="#" class="btn btn-primary btn-sm">Edit</a>'
+          } else if (d.data.name == 'junction') {
+            content = `<input type="text"/>`
+          }
+
+          console.log(content)
+          return content;
+        })
         .attr('class', 'node')
         .attr('r', 1e-6)
         .style("fill", function(d) {
@@ -121,7 +160,7 @@ d3.json("https://raw.githubusercontent.com/bloonguyen1207/d3tree/master/entry.js
         .attr("text-anchor", function(d) {
             return d.children || d._children ? "end" : "start";
         })
-        .text(function(d) { return d.data.name; });
+        .text(function(d) { return d.data.type || d.data.name; });
 
     // UPDATE
     let nodeUpdate = nodeEnter.merge(node);
