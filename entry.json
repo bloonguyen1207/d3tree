@@ -158,7 +158,7 @@
                   "id": "4",
                   "name": "junction",
                   "type": "negate",
-                  "content": "",
+                  "content": "NOT",
                   "children": [
                     {
                       "id": "4",

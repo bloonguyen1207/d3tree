@@ -1,6 +1,6 @@
 // References: https://bl.ocks.org/d3noob/43a860bc0024792f8803bba8ca0d5ecd
 function triggerPopOver() {
-  $('[data-toggle="popover"]').popover({html: true, trigger: "manual", animation: true})
+  $('[data-toggle="popover"]').popover({html: true, trigger: "manual", animation: true, sanitize: false})
   .on("mouseenter", function () {
     let _this = this;
     $(this).popover("show");
@@ -134,14 +134,20 @@ d3.json("https://raw.githubusercontent.com/bloonguyen1207/d3tree/master/entry.js
           return d.data.type || d.data.name;
         })
         .attr('data-content', function(d) {
-          let content = `<p>${d.data.content || "N/A"}</p>`;
+          let content = `<p class="${d.data.name}">${d.data.content || "N/A"}</p>`;
 
           if (d.data.name == 'entry') {
-            content += '<a href="#" class="btn btn-primary btn-sm">Edit</a>'
+            content += '<a href="#" class="btn btn-primary btn-block">Edit</a>'
           } else if (d.data.name == 'junction') {
             content = `
-              <input type="text"/>
-              <a href="#" class="btn btn-success btn-sm">Save</a>
+              <div class="row">
+                <div class="col-8">
+                  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value=${d.data.content}>
+                </div>
+                <div class="col-4 text-center">
+                  <a href="#" class="btn btn-success">Save</a>
+                </div>
+              </div>
             `
           }
 

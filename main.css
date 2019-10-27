@@ -22,6 +22,14 @@
   color: black;
 }
 
-input {
-  min-height: 20px;
+.col-8, .col-4 {
+  padding-right: 0;
+}
+
+.col-4 {
+  padding: 0;
+}
+
+p.component {
+  margin-bottom: 0;
 }
